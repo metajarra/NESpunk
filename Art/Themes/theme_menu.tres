@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dyxf5dxytk4ne"]
+
+[ext_resource type="FontFile" uid="uid://jh86v0jeky6r" path="res://Fonts/NotJamChunkySans6/NotJamChunkySans.ttf" id="1_vinos"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ffpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvaik"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_44yc6"]
+
+[resource]
+default_font = ExtResource("1_vinos")
+default_font_size = 6
+Button/styles/focus = SubResource("StyleBoxEmpty_2ffpq")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rvaik")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_44yc6")
