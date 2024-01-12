@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://btemurkcme4dj"]
+
+[ext_resource type="Script" path="res://Scripts/City/Reactor/reactor.gd" id="1_b4ii1"]
+[ext_resource type="PackedScene" uid="uid://go62vlwm8jlm" path="res://Prefabs/mouse_over_area.tscn" id="2_8cg3t"]
+[ext_resource type="Texture2D" uid="uid://cmm3rqmwytsu8" path="res://icon.svg" id="2_ucuje"]
+[ext_resource type="Theme" uid="uid://dyxf5dxytk4ne" path="res://Art/Themes/theme_menu.tres" id="4_0my84"]
+[ext_resource type="Script" path="res://Scripts/changeable_ui.gd" id="4_ceuii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lri5"]
+size = Vector2(20, 98)
+
+[node name="Reactor" type="Node2D"]
+script = ExtResource("1_b4ii1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.765625)
+texture = ExtResource("2_ucuje")
+
+[node name="Mouse Over Area" parent="." instance=ExtResource("2_8cg3t")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse Over Area"]
+shape = SubResource("RectangleShape2D_1lri5")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = -49.0
+offset_right = 133.0
+offset_bottom = 49.0
+script = ExtResource("4_ceuii")
+
+[node name="Info" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+offset_left = 8.0
+offset_right = 122.0
+offset_bottom = 36.0
+theme = ExtResource("4_0my84")
+
+[node name="Title" type="Label" parent="UI/Info"]
+layout_mode = 2
+text = "REACTOR"
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/Info"]
+layout_mode = 2
+text = "BURNS COAL FOR HEAT"
+vertical_alignment = 1
+
+[node name="Power level" type="Label" parent="UI/Info"]
+layout_mode = 2
+text = "PWR: X"
+vertical_alignment = 1
+
+[node name="Coal consumption" type="Label" parent="UI/Info"]
+layout_mode = 2
+text = "COAL: X"
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -48.0
+offset_right = 58.0
+grow_vertical = 0
+theme = ExtResource("4_0my84")
+theme_override_constants/separation = 0
+
+[node name="Increase power" type="Button" parent="UI/Buttons"]
+layout_mode = 2
+text = "PWR UP"
+flat = true
+alignment = 0
+
+[node name="Decrease power" type="Button" parent="UI/Buttons"]
+layout_mode = 2
+text = "PWR DN"
+flat = true
+alignment = 0
+
+[node name="Control" type="Label" parent="UI/Buttons"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="UI/Buttons"]
+layout_mode = 2
+text = "CLOSE"
+flat = true
+alignment = 0
+
+[connection signal="pressed" from="UI/Buttons/Increase power" to="." method="increase_power_level"]
+[connection signal="pressed" from="UI/Buttons/Decrease power" to="." method="decrease_power_level"]
+[connection signal="pressed" from="UI/Buttons/Close" to="UI" method="close"]

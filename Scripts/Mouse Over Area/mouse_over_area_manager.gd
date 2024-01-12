@@ -1,7 +1,7 @@
 extends Node
 class_name MouseOverAreaManager
 
-@export var signal_bus : SignalBus
+@onready var signal_bus : SignalBus = $"/root/Main/Mouse Over Area/Signal Bus"
 
 var detection_areas : Array[Node]
 
