@@ -1,10 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsyrgp6vay22w"]
+[gd_scene load_steps=13 format=3 uid="uid://dsyrgp6vay22w"]
 
-[ext_resource type="Theme" uid="uid://dyxf5dxytk4ne" path="res://Art/Themes/theme_menu.tres" id="1_ek8d2"]
 [ext_resource type="Texture2D" uid="uid://bh50usg4cahrm" path="res://Art/icon.png" id="1_exsc3"]
+[ext_resource type="Texture2D" uid="uid://cg8vqyfo6vrvk" path="res://Art/Themes/icon.png" id="1_qd6tn"]
+[ext_resource type="Texture2D" uid="uid://brw5jd6c42fic" path="res://Art/Themes/icon2.png" id="2_6waxb"]
 [ext_resource type="Script" path="res://Scripts/Buttons/node_switch_button.gd" id="3_8012g"]
+[ext_resource type="FontFile" uid="uid://jh86v0jeky6r" path="res://Fonts/NotJamChunkySans6/NotJamChunkySans.ttf" id="3_dygj2"]
 [ext_resource type="Script" path="res://Scripts/Buttons/start_button.gd" id="3_rbded"]
 [ext_resource type="Script" path="res://Scripts/Buttons/quit_button.gd" id="4_mlo5p"]
+[ext_resource type="Script" path="res://Scripts/Buttons/VolumeSlider.gd" id="8_5rkc0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ffpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvaik"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_44yc6"]
+
+[sub_resource type="Theme" id="Theme_fbuhl"]
+default_font = ExtResource("3_dygj2")
+default_font_size = 6
+Button/colors/font_focus_color = Color(0.407843, 0.533333, 0.988235, 1)
+Button/colors/font_hover_color = Color(0.407843, 0.533333, 0.988235, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_2ffpq")
+HSlider/icons/grabber = ExtResource("1_qd6tn")
+HSlider/icons/grabber_highlight = ExtResource("2_6waxb")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rvaik")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_44yc6")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ek8d2")
+theme = SubResource("Theme_fbuhl")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -61,7 +82,7 @@ text = "START"
 flat = true
 script = ExtResource("3_rbded")
 
-[node name="Options" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide")]
+[node name="Options" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
 layout_mode = 2
 focus_next = NodePath("../Credits")
 focus_previous = NodePath("../Start")
@@ -70,8 +91,9 @@ flat = true
 script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../../Options")
 node_to_hide = NodePath("../..")
+node_to_focus = NodePath("../../../Options/VBoxContainer/MasterSlider")
 
-[node name="Credits" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide")]
+[node name="Credits" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
 layout_mode = 2
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Options")
@@ -80,6 +102,7 @@ flat = true
 script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../../Credits")
 node_to_hide = NodePath("../..")
+node_to_focus = NodePath("../../../Credits/Back")
 
 [node name="Quit" type="Button" parent="Main Menu/Buttons"]
 layout_mode = 2
@@ -105,38 +128,10 @@ grow_vertical = 0
 text = "C 2204 SKRIMBLO AND FRIENDS"
 fit_content = true
 
-[node name="Options" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Back" type="Button" parent="Options" node_paths=PackedStringArray("node_to_reveal", "node_to_hide")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -44.0
-offset_right = 16.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "BACK"
-flat = true
-script = ExtResource("3_8012g")
-node_to_reveal = NodePath("../../Main Menu")
-node_to_hide = NodePath("..")
-
 [node name="Credits" type="Control" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 2
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -168,17 +163,12 @@ USING SERIF 11 AND CHUNKY SANS 6 FONTS BY NOT JAM
 
 SPECIAL THANKS TO TIGRAN AND BRYCE"
 
-[node name="Back" type="Button" parent="Credits" node_paths=PackedStringArray("node_to_reveal", "node_to_hide")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -44.0
-offset_right = 16.0
-offset_bottom = -30.0
+[node name="Back" type="Button" parent="Credits" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+layout_mode = 2
+offset_left = 42.0
+offset_top = 196.0
+offset_right = 214.0
+offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "BACK"
@@ -186,6 +176,84 @@ flat = true
 script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../Main Menu")
 node_to_hide = NodePath("..")
+node_to_focus = NodePath("../../Main Menu/Buttons/Credits")
 
-[connection signal="pressed" from="Options/Back" to="Options/Back" method="_on_pressed"]
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Options" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -26.0
+offset_right = 16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BACK"
+flat = true
+script = ExtResource("3_8012g")
+node_to_reveal = NodePath("../../Main Menu")
+node_to_hide = NodePath("..")
+node_to_focus = NodePath("../../Main Menu/Buttons/Options")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 133.0
+offset_right = 214.0
+offset_bottom = 208.0
+theme_override_constants/separation = 3
+
+[node name="Master" type="Label" parent="Options/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Master"
+horizontal_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="Options/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+script = ExtResource("8_5rkc0")
+audio_bus_name = "Master"
+
+[node name="Music" type="Label" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Options/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+script = ExtResource("8_5rkc0")
+audio_bus_name = "Music"
+
+[node name="SFX" type="Label" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="Options/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+script = ExtResource("8_5rkc0")
+audio_bus_name = "Sound Effects"
+
 [connection signal="pressed" from="Credits/Back" to="Credits/Back" method="_on_pressed"]
+[connection signal="pressed" from="Options/Back" to="Options/Back" method="_on_pressed"]
+[connection signal="value_changed" from="Options/VBoxContainer/MasterSlider" to="Options/VBoxContainer/MasterSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/VBoxContainer/MusicSlider" to="Options/VBoxContainer/MusicSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/VBoxContainer/SFXSlider" to="Options/VBoxContainer/SFXSlider" method="_on_value_changed"]
