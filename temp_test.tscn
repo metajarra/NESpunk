@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://br50npm7n6ieo"]
+
+[ext_resource type="PackedScene" uid="uid://go62vlwm8jlm" path="res://Prefabs/mouse_over_area.tscn" id="1_kjhnb"]
+[ext_resource type="Script" path="res://Scripts/Mouse Over Area/mouse_over_area_manager.gd" id="2_4mboi"]
+[ext_resource type="Script" path="res://Scripts/Signal Bus/signal_bus.gd" id="3_n0clm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r28cy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("signal_bus")]
+script = ExtResource("2_4mboi")
+signal_bus = NodePath("../Signal Bus")
+
+[node name="Signal Bus" type="Node" parent="."]
+script = ExtResource("3_n0clm")
+
+[node name="A" parent="." node_paths=PackedStringArray("signal_bus") instance=ExtResource("1_kjhnb")]
+position = Vector2(80, 125)
+signal_bus = NodePath("../Signal Bus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="A"]
+shape = SubResource("CircleShape2D_r28cy")
+
+[node name="B" parent="." node_paths=PackedStringArray("signal_bus") instance=ExtResource("1_kjhnb")]
+position = Vector2(94, 120)
+signal_bus = NodePath("../Signal Bus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="B"]
+shape = SubResource("CircleShape2D_r28cy")
