@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://go62vlwm8jlm"]
+
+[ext_resource type="Script" path="res://Scripts/Mouse Over Area/mouse_over_area.gd" id="1_fktl6"]
+
+[node name="Mouse Over Area" type="Area2D" groups=["mouse_detection_areas"]]
+script = ExtResource("1_fktl6")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
