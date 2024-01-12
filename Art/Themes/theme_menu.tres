@@ -12,6 +12,8 @@ bg_color = Color(1, 1, 1, 1)
 [resource]
 default_font = ExtResource("1_vinos")
 default_font_size = 6
+Button/colors/font_focus_color = Color(0.407843, 0.533333, 0.988235, 1)
+Button/colors/font_hover_color = Color(0.407843, 0.533333, 0.988235, 1)
 Button/styles/focus = SubResource("StyleBoxEmpty_2ffpq")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rvaik")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_44yc6")
