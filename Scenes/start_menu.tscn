@@ -52,7 +52,6 @@ grow_vertical = 2
 texture = ExtResource("1_exsc3")
 
 [node name="Main Menu" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,6 +179,7 @@ node_to_hide = NodePath("..")
 node_to_focus = NodePath("../../Main Menu/Buttons/Credits")
 
 [node name="Options" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
