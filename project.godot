@@ -25,7 +25,6 @@ window/size/viewport_width=256
 window/size/viewport_height=240
 window/stretch/mode="viewport"
 
-
 [input]
 
 up={
@@ -52,7 +51,6 @@ right={
 [layer_names]
 
 2d_physics/layer_1="Mouse Detection Areas"
-
 
 [rendering]
 
