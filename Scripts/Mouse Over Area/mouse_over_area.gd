@@ -2,7 +2,7 @@ extends Area2D
 class_name MouseOverArea
 
 #region signal bus interaction
-@export var signal_bus : SignalBus
+@onready var signal_bus : SignalBus = $"/root/Main/Mouse Over Area/Signal Bus"
 
 signal mouse_over
 

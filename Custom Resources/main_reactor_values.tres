@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ReactorValues" load_steps=2 format=3 uid="uid://by4ael4br73gy"]
+
+[ext_resource type="Script" path="res://Scripts/City/Reactor/reactor_values.gd" id="1_85e3l"]
+
+[resource]
+script = ExtResource("1_85e3l")
