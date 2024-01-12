@@ -16,7 +16,6 @@ func _ready() -> void:
 		area.sublayer_priority = i
 		i += 1
 
-# mail toss scallywag writes least efficient algorithm ever, asked to leave scallywag studios
 func _on_mouse_over(area_over : MouseOverArea) -> void:
 	var total_mouse_over_areas : Array[Node]
 	
@@ -38,13 +37,11 @@ func _on_mouse_over(area_over : MouseOverArea) -> void:
 	var area_with_highest_priority : MouseOverArea
 	for area in total_mouse_over_areas:
 		area = area as MouseOverArea
+		
+		area.is_highest = false
+		
 		if not area_with_highest_priority \
 		or area.sublayer_priority > area_with_highest_priority.sublayer_priority:
 			area_with_highest_priority = area
-			print("Made %s highest priority area" % area.name)
 	
 	area_with_highest_priority.is_highest = true
-	for area in total_mouse_over_areas:
-		area = area as MouseOverArea
-		if area != area_with_highest_priority:
-			area.is_highest = false
