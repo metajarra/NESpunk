@@ -21,7 +21,8 @@ var resource_requirement_per_turn : Resources
 const ADDITIONAL_REQUIREMENT_PER_PERSON := 1
 func calculate_requirement() -> Resources:
 	var resources = Resources.new()
-	resources.coal = local_population.population * REQUIREMENT_PER_PERSON
+	if type == DistrictType.SPECIAL:
+		resources.coal = local_population.population * ADDITIONAL_REQUIREMENT_PER_PERSON
 	return resources
 
 var local_population : Population
