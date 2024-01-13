@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsyrgp6vay22w"]
+[gd_scene load_steps=15 format=3 uid="uid://dsyrgp6vay22w"]
 
 [ext_resource type="Texture2D" uid="uid://bh50usg4cahrm" path="res://Art/icon.png" id="1_exsc3"]
 [ext_resource type="Texture2D" uid="uid://cg8vqyfo6vrvk" path="res://Art/Themes/icon.png" id="1_qd6tn"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://jh86v0jeky6r" path="res://Fonts/NotJamChunkySans6/NotJamChunkySans.ttf" id="3_dygj2"]
 [ext_resource type="Script" path="res://Scripts/Buttons/start_button.gd" id="3_rbded"]
 [ext_resource type="Script" path="res://Scripts/Buttons/quit_button.gd" id="4_mlo5p"]
+[ext_resource type="Script" path="res://Scripts/Buttons/hide_focus_on_mouse_move.gd" id="5_8a0x0"]
+[ext_resource type="Script" path="res://Scripts/Signal Bus/signal_bus.gd" id="5_g1ht0"]
 [ext_resource type="Script" path="res://Scripts/Buttons/VolumeSlider.gd" id="8_5rkc0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ffpq"]
@@ -35,6 +37,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fbuhl")
+
+[node name="Signal Bus" type="Node" parent="."]
+script = ExtResource("5_g1ht0")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -73,16 +78,18 @@ offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
+script = ExtResource("5_8a0x0")
 
-[node name="Start" type="Button" parent="Main Menu/Buttons"]
+[node name="Start" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("signal_bus")]
 layout_mode = 2
 focus_next = NodePath("../Options")
 focus_previous = NodePath("../Quit")
 text = "START"
 flat = true
 script = ExtResource("3_rbded")
+signal_bus = NodePath("../../../Signal Bus")
 
-[node name="Options" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+[node name="Options" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus", "signal_bus")]
 layout_mode = 2
 focus_next = NodePath("../Credits")
 focus_previous = NodePath("../Start")
@@ -92,8 +99,9 @@ script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../../Options")
 node_to_hide = NodePath("../..")
 node_to_focus = NodePath("../../../Options/VBoxContainer/MasterSlider")
+signal_bus = NodePath("../../../Signal Bus")
 
-[node name="Credits" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+[node name="Credits" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus", "signal_bus")]
 layout_mode = 2
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Options")
@@ -103,14 +111,16 @@ script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../../Credits")
 node_to_hide = NodePath("../..")
 node_to_focus = NodePath("../../../Credits/Back")
+signal_bus = NodePath("../../../Signal Bus")
 
-[node name="Quit" type="Button" parent="Main Menu/Buttons"]
+[node name="Quit" type="Button" parent="Main Menu/Buttons" node_paths=PackedStringArray("signal_bus")]
 layout_mode = 2
 focus_next = NodePath("../Start")
 focus_previous = NodePath("../Credits")
 text = "QUIT"
 flat = true
 script = ExtResource("4_mlo5p")
+signal_bus = NodePath("../../../Signal Bus")
 
 [node name="Copyright" type="RichTextLabel" parent="Main Menu"]
 layout_mode = 1
@@ -163,7 +173,7 @@ USING SERIF 11 AND CHUNKY SANS 6 FONTS BY NOT JAM
 
 SPECIAL THANKS TO TIGRAN AND BRYCE"
 
-[node name="Back" type="Button" parent="Credits" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+[node name="Back" type="Button" parent="Credits" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus", "signal_bus")]
 layout_mode = 2
 offset_left = 42.0
 offset_top = 196.0
@@ -177,6 +187,7 @@ script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../Main Menu")
 node_to_hide = NodePath("..")
 node_to_focus = NodePath("../../Main Menu/Buttons/Credits")
+signal_bus = NodePath("../../Signal Bus")
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -187,7 +198,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Back" type="Button" parent="Options" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus")]
+[node name="Back" type="Button" parent="Options" node_paths=PackedStringArray("node_to_reveal", "node_to_hide", "node_to_focus", "signal_bus")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -206,6 +217,7 @@ script = ExtResource("3_8012g")
 node_to_reveal = NodePath("../../Main Menu")
 node_to_hide = NodePath("..")
 node_to_focus = NodePath("../../Main Menu/Buttons/Options")
+signal_bus = NodePath("../../Signal Bus")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Options"]
 layout_mode = 1

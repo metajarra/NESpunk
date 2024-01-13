@@ -1,4 +1,4 @@
-extends Button
+extends FocusableButton
 
 ## Made visible when this button is pressed
 @export var node_to_reveal : Node
@@ -8,6 +8,8 @@ extends Button
 @export var node_to_focus : Node
 
 func _ready() -> void:
+	super._ready()
+	
 	if pressed.is_connected(_on_pressed): return
 	pressed.connect(_on_pressed)
 

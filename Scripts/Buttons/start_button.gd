@@ -1,8 +1,10 @@
-extends Button
+extends FocusableButton
 
 @onready var scene_manager : SceneManager = get_node("/root/scene_manager")
 
 func _ready() -> void:
+	super._ready()
+	
 	grab_focus()
 	if pressed.is_connected(_on_pressed): return
 	pressed.connect(_on_pressed)
