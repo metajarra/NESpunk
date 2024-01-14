@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://caipkkv18w8vw"]
+[gd_scene load_steps=12 format=3 uid="uid://caipkkv18w8vw"]
 
 [ext_resource type="Script" path="res://Scripts/City/resource_storage.gd" id="1_41oue"]
 [ext_resource type="PackedScene" uid="uid://btemurkcme4dj" path="res://Prefabs/reactor.tscn" id="1_f4na6"]
+[ext_resource type="PackedScene" uid="uid://bnckfkooxbbiw" path="res://Prefabs/changeable_ui.tscn" id="1_kh51x"]
+[ext_resource type="Theme" uid="uid://dyxf5dxytk4ne" path="res://Art/Themes/theme_menu.tres" id="2_h30rb"]
 [ext_resource type="Script" path="res://Scripts/Signal Bus/signal_bus.gd" id="2_l16lc"]
 [ext_resource type="Script" path="res://Scripts/Mouse Over Area/mouse_over_area_manager.gd" id="3_l0y7f"]
 [ext_resource type="Resource" uid="uid://by4ael4br73gy" path="res://Custom Resources/main_reactor_values.tres" id="5_l2vee"]
@@ -12,6 +14,80 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gj378"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Changeable UI" parent="." instance=ExtResource("1_kh51x")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 115.0
+offset_top = 64.0
+offset_right = 230.0
+offset_bottom = 181.0
+grow_horizontal = 1
+grow_vertical = 1
+theme = ExtResource("2_h30rb")
+
+[node name="Info" type="VBoxContainer" parent="Changeable UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_right = 57.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme = ExtResource("2_h30rb")
+
+[node name="Title" type="Label" parent="Changeable UI/Info"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Changeable UI/Info"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Field1" type="Label" parent="Changeable UI/Info"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Field2" type="Label" parent="Changeable UI/Info"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Field3" type="Label" parent="Changeable UI/Info"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Changeable UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -14.0
+offset_right = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Button1" type="Button" parent="Changeable UI/Buttons"]
+layout_mode = 2
+flat = true
+alignment = 0
+
+[node name="Button2" type="Button" parent="Changeable UI/Buttons"]
+layout_mode = 2
+flat = true
+alignment = 0
+
+[node name="Close" type="Button" parent="Changeable UI/Buttons"]
+layout_mode = 2
+text = "CLOSE"
+flat = true
+alignment = 0
 
 [node name="City" type="Node" parent="."]
 
@@ -65,3 +141,5 @@ position = Vector2(149, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot4/Mouse Over Area"]
 shape = SubResource("RectangleShape2D_gj378")
+
+[connection signal="pressed" from="Changeable UI/Buttons/Close" to="Changeable UI" method="close"]

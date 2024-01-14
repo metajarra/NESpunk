@@ -1,4 +1,5 @@
 extends Node
+class_name HopeAndDiscontent
 
 @export var base_hope: int
 @export var base_discontent: int
