@@ -1,21 +1,20 @@
 # Struct
 class_name District
 
-enum DistrictType { HOUSING, SPECIAL }
+var deposit : Resources
+
+enum DistrictType { MINING, HOUSING, SPECIAL }
 var type : DistrictType
 
-#var resource_output_per_turn : Resources
-#const OUTPUT_PER_TURN := 100
-#func calculate_output() -> Resources:
-	#var resources = Resources.new()
-	#match type:
-		#OutpostType.COAL:
-			#resources.coal = OUTPUT_PER_TURN
-		#OutpostType.WOOD:
-			#resources.wood = OUTPUT_PER_TURN
-		#OutpostType.STEEL:
-			#resources.steel = OUTPUT_PER_TURN
-	#return resources
+var resource_output_per_turn : Resources
+const OUTPUT_PER_TURN := 100
+func calculate_output() -> Resources:
+	var resources = Resources.new()
+	if type == DistrictType.MINING:
+		resources.coal = clamp(resources.coal, 0, 1) * OUTPUT_PER_TURN
+		resources.wood = clamp(resources.wood, 0, 1) * OUTPUT_PER_TURN
+		resources.steel = clamp(resources.steel, 0, 1) * OUTPUT_PER_TURN
+	return resources
 
 var resource_requirement_per_turn : Resources
 const ADDITIONAL_REQUIREMENT_PER_PERSON := 1
