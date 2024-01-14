@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://caipkkv18w8vw"]
+[gd_scene load_steps=10 format=3 uid="uid://caipkkv18w8vw"]
 
 [ext_resource type="Script" path="res://Scripts/City/resource_storage.gd" id="1_41oue"]
 [ext_resource type="PackedScene" uid="uid://btemurkcme4dj" path="res://Prefabs/reactor.tscn" id="1_f4na6"]
 [ext_resource type="Script" path="res://Scripts/Signal Bus/signal_bus.gd" id="2_l16lc"]
 [ext_resource type="Script" path="res://Scripts/Mouse Over Area/mouse_over_area_manager.gd" id="3_l0y7f"]
 [ext_resource type="Resource" uid="uid://by4ael4br73gy" path="res://Custom Resources/main_reactor_values.tres" id="5_l2vee"]
+[ext_resource type="Script" path="res://Scripts/City/ring.gd" id="6_82ylf"]
+[ext_resource type="PackedScene" uid="uid://go62vlwm8jlm" path="res://Prefabs/mouse_over_area.tscn" id="6_p8bqs"]
+[ext_resource type="PackedScene" uid="uid://cj6qn5hoo671q" path="res://Prefabs/slot.tscn" id="7_y5v0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj378"]
 
 [node name="Main" type="Node2D"]
 
@@ -25,3 +30,38 @@ script = ExtResource("3_l0y7f")
 position = Vector2(80, 120)
 reactor_values = ExtResource("5_l2vee")
 storage = NodePath("../City/Resources")
+
+[node name="Ring" type="Node" parent="."]
+script = ExtResource("6_82ylf")
+
+[node name="Slot" parent="Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Ring/Slot" instance=ExtResource("6_p8bqs")]
+position = Vector2(86, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot/Mouse Over Area"]
+shape = SubResource("RectangleShape2D_gj378")
+
+[node name="Slot2" parent="Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Ring/Slot2" instance=ExtResource("6_p8bqs")]
+position = Vector2(107, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot2/Mouse Over Area"]
+shape = SubResource("RectangleShape2D_gj378")
+
+[node name="Slot3" parent="Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Ring/Slot3" instance=ExtResource("6_p8bqs")]
+position = Vector2(128, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot3/Mouse Over Area"]
+shape = SubResource("RectangleShape2D_gj378")
+
+[node name="Slot4" parent="Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Ring/Slot4" instance=ExtResource("6_p8bqs")]
+position = Vector2(149, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot4/Mouse Over Area"]
+shape = SubResource("RectangleShape2D_gj378")
