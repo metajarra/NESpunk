@@ -30,15 +30,14 @@ func _on_mouse_exited() -> void:
 #endregion
 
 #region silly debug colours
+@onready var sprite : Sprite2D = $"../Sprite2D"
+
 func _process(_delta: float) -> void:
 	if is_mouse_over:
 		if is_highest:
-			(get_node("CollisionShape2D") as CollisionShape2D) \
-			.debug_color = Color(1, 0, 0, 0.5)
+			sprite.visible = true
 			return
-		(get_node("CollisionShape2D") as CollisionShape2D) \
-		.debug_color = Color(0, 1, 0, 0.5)
+		sprite.visible = false
 	else:
-		(get_node("CollisionShape2D") as CollisionShape2D) \
-		.debug_color = Color(0, 0, 1, 0.5)
+		sprite.visible = false
 #endregion

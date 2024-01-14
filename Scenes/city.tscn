@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caipkkv18w8vw"]
+[gd_scene load_steps=13 format=3 uid="uid://caipkkv18w8vw"]
 
 [ext_resource type="Script" path="res://Scripts/City/resource_storage.gd" id="1_41oue"]
 [ext_resource type="PackedScene" uid="uid://btemurkcme4dj" path="res://Prefabs/reactor.tscn" id="1_f4na6"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://Scripts/City/ring.gd" id="6_82ylf"]
 [ext_resource type="PackedScene" uid="uid://go62vlwm8jlm" path="res://Prefabs/mouse_over_area.tscn" id="6_p8bqs"]
 [ext_resource type="PackedScene" uid="uid://cj6qn5hoo671q" path="res://Prefabs/slot.tscn" id="7_y5v0n"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj378"]
+[ext_resource type="Texture2D" uid="uid://5162uge6kbyb" path="res://Art/ring_section_inner.png" id="9_fxt6j"]
+[ext_resource type="Texture2D" uid="uid://cawq3hmgj41rw" path="res://Art/ring_section_middle.png" id="10_ah6yu"]
+[ext_resource type="Texture2D" uid="uid://ds1jt0n0bd63g" path="res://Art/ring_section_outer_1.png" id="11_ygyyu"]
+[ext_resource type="Texture2D" uid="uid://bgg04ehpykyjv" path="res://Art/ring_section_outer_2.png" id="12_g0xk6"]
 
 [node name="Main" type="Node2D"]
 
@@ -27,41 +29,285 @@ script = ExtResource("2_l16lc")
 script = ExtResource("3_l0y7f")
 
 [node name="Reactor" parent="." node_paths=PackedStringArray("storage") instance=ExtResource("1_f4na6")]
-position = Vector2(80, 120)
+position = Vector2(126, 111)
 reactor_values = ExtResource("5_l2vee")
 storage = NodePath("../City/Resources")
 
-[node name="Ring" type="Node" parent="."]
+[node name="Inner Ring" type="Node" parent="."]
 script = ExtResource("6_82ylf")
 
-[node name="Slot" parent="Ring" instance=ExtResource("7_y5v0n")]
+[node name="Slot" parent="Inner Ring" instance=ExtResource("7_y5v0n")]
 
-[node name="Mouse Over Area" parent="Ring/Slot" instance=ExtResource("6_p8bqs")]
+[node name="Mouse Over Area" parent="Inner Ring/Slot" instance=ExtResource("6_p8bqs")]
 position = Vector2(86, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot/Mouse Over Area"]
-shape = SubResource("RectangleShape2D_gj378")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inner Ring/Slot/Mouse Over Area"]
+position = Vector2(13, 115)
+scale = Vector2(0.172348, 0.172348)
+polygon = PackedVector2Array(151, -8, 135.2, -8, 76, 1.2, 27.8, 19.6, -4, 44.4, -4, 45, -16.6, 75, -151, 75, -151, 50.7, -147.9, 38, -145.7, 38, -127.8, 9, -125.7, 9, -71.7, -32, -68.9, -32, 23.1, -66, 28.4, -66, 98.5, -75, 151, -75)
 
-[node name="Slot2" parent="Ring" instance=ExtResource("7_y5v0n")]
+[node name="Sprite2D" type="Sprite2D" parent="Inner Ring/Slot"]
+visible = false
+position = Vector2(99, 139)
+scale = Vector2(0.172348, 0.172348)
+texture = ExtResource("9_fxt6j")
 
-[node name="Mouse Over Area" parent="Ring/Slot2" instance=ExtResource("6_p8bqs")]
+[node name="Slot2" parent="Inner Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Inner Ring/Slot2" instance=ExtResource("6_p8bqs")]
 position = Vector2(107, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot2/Mouse Over Area"]
-shape = SubResource("RectangleShape2D_gj378")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inner Ring/Slot2/Mouse Over Area"]
+position = Vector2(46, 115)
+rotation = 3.14159
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(151, -8, 135.2, -8, 76, 1.2, 27.8, 19.6, -4, 44.4, -4, 45, -16.6, 75, -151, 75, -151, 50.7, -147.9, 38, -145.7, 38, -127.8, 9, -125.7, 9, -71.7, -32, -68.9, -32, 23.1, -66, 28.4, -66, 98.5, -75, 151, -75)
 
-[node name="Slot3" parent="Ring" instance=ExtResource("7_y5v0n")]
+[node name="Sprite2D" type="Sprite2D" parent="Inner Ring/Slot2"]
+visible = false
+position = Vector2(153, 139)
+scale = Vector2(-0.172, 0.172)
+texture = ExtResource("9_fxt6j")
 
-[node name="Mouse Over Area" parent="Ring/Slot3" instance=ExtResource("6_p8bqs")]
+[node name="Slot3" parent="Inner Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Inner Ring/Slot3" instance=ExtResource("6_p8bqs")]
 position = Vector2(128, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot3/Mouse Over Area"]
-shape = SubResource("RectangleShape2D_gj378")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inner Ring/Slot3/Mouse Over Area"]
+position = Vector2(-29, 142)
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(151, -8, 135.2, -8, 76, 1.2, 27.8, 19.6, -4, 44.4, -4, 45, -16.6, 75, -151, 75, -151, 50.7, -147.9, 38, -145.7, 38, -127.8, 9, -125.7, 9, -71.7, -32, -68.9, -32, 23.1, -66, 28.4, -66, 98.5, -75, 151, -75)
 
-[node name="Slot4" parent="Ring" instance=ExtResource("7_y5v0n")]
+[node name="Sprite2D" type="Sprite2D" parent="Inner Ring/Slot3"]
+visible = false
+position = Vector2(99, 166)
+scale = Vector2(0.172, -0.172)
+texture = ExtResource("9_fxt6j")
 
-[node name="Mouse Over Area" parent="Ring/Slot4" instance=ExtResource("6_p8bqs")]
+[node name="Slot4" parent="Inner Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Inner Ring/Slot4" instance=ExtResource("6_p8bqs")]
 position = Vector2(149, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring/Slot4/Mouse Over Area"]
-shape = SubResource("RectangleShape2D_gj378")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inner Ring/Slot4/Mouse Over Area"]
+position = Vector2(4.00002, 142)
+rotation = 3.14159
+scale = Vector2(0.172, 0.172)
+polygon = PackedVector2Array(151, -8, 135.2, -8, 76, 1.2, 27.8, 19.6, -4, 44.4, -4, 45, -16.6, 75, -151, 75, -151, 50.7, -147.9, 38, -145.7, 38, -127.8, 9, -125.7, 9, -71.7, -32, -68.9, -32, 23.1, -66, 28.4, -66, 98.5, -75, 151, -75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Inner Ring/Slot4"]
+visible = false
+position = Vector2(153, 166)
+rotation = -3.14159
+scale = Vector2(0.172, 0.172)
+texture = ExtResource("9_fxt6j")
+
+[node name="Mid Ring" type="Node" parent="."]
+script = ExtResource("6_82ylf")
+needed_heat_level = 2
+
+[node name="Slot" parent="Mid Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Mid Ring/Slot" instance=ExtResource("6_p8bqs")]
+position = Vector2(86, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid Ring/Slot/Mouse Over Area"]
+position = Vector2(3, 110)
+scale = Vector2(0.172348, 0.172348)
+polygon = PackedVector2Array(210.5, -45.5, 189.2, -45.5, 87.5, -32.1, -6.8, 1.2, -70.5, 50.9, -70.5, 51.9, -86.5, 78, -86.5, 80, -91.4, 104.5, -210.5, 104.5, -210.5, 78.4, -205.5, 56.5, -203.4, 56.5, -181.3, 19.5, -179.2, 19.5, -105.2, -39.5, -102.5, -39.5, 25.6, -88.5, 30.9, -88.5, 153.5, -104.5, 210.5, -104.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid Ring/Slot"]
+visible = false
+position = Vector2(89, 134)
+scale = Vector2(0.172348, 0.172348)
+texture = ExtResource("10_ah6yu")
+
+[node name="Slot2" parent="Mid Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Mid Ring/Slot2" instance=ExtResource("6_p8bqs")]
+position = Vector2(107, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid Ring/Slot2/Mouse Over Area"]
+position = Vector2(56, 110)
+rotation = 3.14159
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(210.5, -45.5, 189.2, -45.5, 87.5, -32.1, -6.8, 1.2, -70.5, 50.9, -70.5, 51.9, -86.5, 78, -86.5, 80, -91.4, 104.5, -210.5, 104.5, -210.5, 78.4, -205.5, 56.5, -203.4, 56.5, -181.3, 19.5, -179.2, 19.5, -105.2, -39.5, -102.5, -39.5, 25.6, -88.5, 30.9, -88.5, 153.5, -104.5, 210.5, -104.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid Ring/Slot2"]
+visible = false
+position = Vector2(163, 134)
+scale = Vector2(-0.172, 0.172)
+texture = ExtResource("10_ah6yu")
+
+[node name="Slot3" parent="Mid Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Mid Ring/Slot3" instance=ExtResource("6_p8bqs")]
+position = Vector2(128, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid Ring/Slot3/Mouse Over Area"]
+position = Vector2(-39, 147)
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(210.5, -45.5, 189.2, -45.5, 87.5, -32.1, -6.8, 1.2, -70.5, 50.9, -70.5, 51.9, -86.5, 78, -86.5, 80, -91.4, 104.5, -210.5, 104.5, -210.5, 78.4, -205.5, 56.5, -203.4, 56.5, -181.3, 19.5, -179.2, 19.5, -105.2, -39.5, -102.5, -39.5, 25.6, -88.5, 30.9, -88.5, 153.5, -104.5, 210.5, -104.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid Ring/Slot3"]
+visible = false
+position = Vector2(89, 171)
+scale = Vector2(0.172, -0.172)
+texture = ExtResource("10_ah6yu")
+
+[node name="Slot4" parent="Mid Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Mid Ring/Slot4" instance=ExtResource("6_p8bqs")]
+position = Vector2(149, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid Ring/Slot4/Mouse Over Area"]
+position = Vector2(14, 147)
+rotation = 3.14159
+scale = Vector2(0.172, 0.172)
+polygon = PackedVector2Array(210.5, -45.5, 189.2, -45.5, 87.5, -32.1, -6.8, 1.2, -70.5, 50.9, -70.5, 51.9, -86.5, 78, -86.5, 80, -91.4, 104.5, -210.5, 104.5, -210.5, 78.4, -205.5, 56.5, -203.4, 56.5, -181.3, 19.5, -179.2, 19.5, -105.2, -39.5, -102.5, -39.5, 25.6, -88.5, 30.9, -88.5, 153.5, -104.5, 210.5, -104.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mid Ring/Slot4"]
+visible = false
+position = Vector2(163, 171)
+rotation = -3.14159
+scale = Vector2(0.172, 0.172)
+texture = ExtResource("10_ah6yu")
+
+[node name="Outer Ring" type="Node" parent="."]
+script = ExtResource("6_82ylf")
+needed_heat_level = 3
+
+[node name="Slot" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot" instance=ExtResource("6_p8bqs")]
+position = Vector2(86, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot/Mouse Over Area"]
+position = Vector2(-28, 110)
+scale = Vector2(0.172348, 0.172348)
+polygon = PackedVector2Array(128.5, -72.4, 128.5, -61.5, 127.7, -61.5, 63.5, -29.4, 8.5, 14.9, 8.5, 16.1, -21.5, 59.1, -21.5, 61, -29.011, 104.44, -127.649, 104.44, -128.5, 78.3, -114.2, 29.5, -111.9, 29.5, -68.9, -25.5, -66.2, -25.5, -4.2, -71.5, -1.5, -71.5, 62.1, -101.5, 81, -101.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot"]
+visible = false
+position = Vector2(58, 134)
+scale = Vector2(0.172348, 0.172348)
+texture = ExtResource("11_ygyyu")
+
+[node name="Slot5" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot5" instance=ExtResource("6_p8bqs")]
+position = Vector2(86, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot5/Mouse Over Area"]
+position = Vector2(12, 91)
+scale = Vector2(0.172348, 0.172348)
+polygon = PackedVector2Array(157, 5.5, 130.6, 5.5, 4, 20, -77.7, 43.5, -109.8, 43.5, -157, 15.3, -157, 4.5, -154.6, 4.5, -17.7, -33.5, -11.5, -33.5, 88.1, -43.5, 157, -43.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot5"]
+visible = false
+position = Vector2(98, 115)
+scale = Vector2(0.172348, 0.172348)
+texture = ExtResource("12_g0xk6")
+
+[node name="Slot2" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot2" instance=ExtResource("6_p8bqs")]
+position = Vector2(107, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot2/Mouse Over Area"]
+position = Vector2(47, 91)
+rotation = 3.14159
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(157, 5.5, 130.6, 5.5, 4, 20, -77.7, 43.5, -109.8, 43.5, -157, 15.3, -157, 4.5, -154.6, 4.5, -17.7, -33.5, -11.5, -33.5, 88.1, -43.5, 157, -43.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot2"]
+visible = false
+position = Vector2(154, 115)
+scale = Vector2(-0.172, 0.172)
+texture = ExtResource("12_g0xk6")
+
+[node name="Slot6" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot6" instance=ExtResource("6_p8bqs")]
+position = Vector2(107, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot6/Mouse Over Area"]
+position = Vector2(87, 110)
+rotation = 3.14159
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(128.5, -72.4, 128.5, -61.5, 127.7, -61.5, 63.5, -29.4, 8.5, 14.9, 8.5, 16.1, -21.5, 59.1, -21.5, 61, -29.0698, 104.651, -127.907, 104.651, -128.5, 78.3, -114.2, 29.5, -111.9, 29.5, -68.9, -25.5, -66.2, -25.5, -4.2, -71.5, -1.5, -71.5, 62.1, -101.5, 81, -101.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot6"]
+visible = false
+position = Vector2(194, 134)
+scale = Vector2(-0.172, 0.172)
+texture = ExtResource("11_ygyyu")
+
+[node name="Slot3" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot3" instance=ExtResource("6_p8bqs")]
+position = Vector2(128, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot3/Mouse Over Area"]
+position = Vector2(-70, 147)
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(128.5, -72.4, 128.5, -61.5, 127.7, -61.5, 63.5, -29.4, 8.5, 14.9, 8.5, 16.1, -21.5, 59.1, -21.5, 61, -29.0698, 104.651, -127.907, 104.651, -128.5, 78.3, -114.2, 29.5, -111.9, 29.5, -68.9, -25.5, -66.2, -25.5, -4.2, -71.5, -1.5, -71.5, 62.1, -101.5, 81, -101.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot3"]
+visible = false
+position = Vector2(58, 171)
+scale = Vector2(0.172, -0.172)
+texture = ExtResource("11_ygyyu")
+
+[node name="Slot7" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot7" instance=ExtResource("6_p8bqs")]
+position = Vector2(128, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot7/Mouse Over Area"]
+position = Vector2(-30, 166)
+scale = Vector2(0.172, -0.172)
+polygon = PackedVector2Array(157, 5.5, 130.6, 5.5, 4, 20, -77.7, 43.5, -109.8, 43.5, -157, 15.3, -157, 4.5, -154.6, 4.5, -17.7, -33.5, -11.5, -33.5, 88.1, -43.5, 157, -43.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot7"]
+visible = false
+position = Vector2(98, 190)
+scale = Vector2(0.172, -0.172)
+texture = ExtResource("12_g0xk6")
+
+[node name="Slot4" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot4" instance=ExtResource("6_p8bqs")]
+position = Vector2(149, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot4/Mouse Over Area"]
+position = Vector2(5, 166)
+rotation = 3.14159
+scale = Vector2(0.172, 0.172)
+polygon = PackedVector2Array(157, 5.5, 130.6, 5.5, 4, 20, -77.7, 43.5, -109.8, 43.5, -157, 15.3, -157, 4.5, -154.6, 4.5, -17.7, -33.5, -11.5, -33.5, 88.1, -43.5, 157, -43.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot4"]
+visible = false
+position = Vector2(154, 190)
+rotation = -3.14159
+scale = Vector2(0.172, 0.172)
+texture = ExtResource("12_g0xk6")
+
+[node name="Slot8" parent="Outer Ring" instance=ExtResource("7_y5v0n")]
+
+[node name="Mouse Over Area" parent="Outer Ring/Slot8" instance=ExtResource("6_p8bqs")]
+position = Vector2(149, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outer Ring/Slot8/Mouse Over Area"]
+position = Vector2(45, 147)
+rotation = 3.14159
+scale = Vector2(0.172, 0.172)
+polygon = PackedVector2Array(128.5, -72.4, 128.5, -61.5, 127.7, -61.5, 63.5, -29.4, 8.5, 14.9, 8.5, 16.1, -21.5, 59.1, -21.5, 61, -29.0697, 104.651, -127.907, 104.651, -128.5, 78.3, -114.2, 29.5, -111.9, 29.5, -68.9, -25.5, -66.2, -25.5, -4.2, -71.5, -1.5, -71.5, 62.1, -101.5, 81, -101.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Outer Ring/Slot8"]
+visible = false
+position = Vector2(194, 171)
+rotation = -3.14159
+scale = Vector2(0.172, 0.172)
+texture = ExtResource("11_ygyyu")

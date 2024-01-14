@@ -8,6 +8,7 @@
 script = ExtResource("1_8rscg")
 
 [node name="Changeable UI" parent="." instance=ExtResource("1_n8jgt")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

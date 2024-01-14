@@ -17,6 +17,7 @@ scale = Vector2(0.15625, 0.765625)
 texture = ExtResource("2_ucuje")
 
 [node name="Mouse Over Area" parent="." instance=ExtResource("2_8cg3t")]
+sublayer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse Over Area"]
 shape = SubResource("RectangleShape2D_1lri5")
