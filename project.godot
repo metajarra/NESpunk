@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 scene_manager="*res://Scripts/Scene Management/scene_manager.gd"
+turn_manager="*res://Prefabs/turn_manager.tscn"
 
 [display]
 

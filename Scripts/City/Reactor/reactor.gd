@@ -7,7 +7,7 @@ class_name Reactor
 func _ready() -> void:
 	reactor_values.coal_consumption_per_turn = reactor_values.calculate_coal_consumption()
 
-func next_turn() -> void:
+func next_turn(_current_turn : int) -> void:
 	reactor_values.coal_consumption_per_turn = reactor_values.calculate_coal_consumption()
 	if storage.resources.coal < reactor_values.coal_consumption_per_turn:
 		printerr("Not enough coal! Game over")

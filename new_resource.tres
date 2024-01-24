@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="TriggerableEvent" load_steps=5 format=3 uid="uid://b1xgbxu374hy7"]
+
+[ext_resource type="Script" path="res://Scripts/Events/event_effects.gd" id="1_gewy0"]
+[ext_resource type="Script" path="res://Scripts/Events/triggerable_event.gd" id="1_mgipn"]
+
+[sub_resource type="Resource" id="Resource_34syw"]
+script = ExtResource("1_gewy0")
+population_change = 0
+hope_change = 0
+discontent_change = 0
+coal_change = 0
+wood_change = 0
+iron_change = 0
+custom_change = 0
+
+[sub_resource type="Resource" id="Resource_e761q"]
+script = ExtResource("1_gewy0")
+population_change = 0
+hope_change = 0
+discontent_change = 0
+coal_change = 5
+wood_change = 0
+iron_change = 0
+custom_change = 0
+
+[resource]
+script = ExtResource("1_mgipn")
+name = "coal offer"
+text = "offered some coal. do you want it"
+options_and_effects = {
+"No": SubResource("Resource_34syw"),
+"Yes": SubResource("Resource_e761q")
+}
+can_repeat = true
+can_be_triggered_randomly = true

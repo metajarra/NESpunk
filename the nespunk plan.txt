@@ -1,0 +1,163 @@
+nespunk if I did preproduction oops
+
+table of contents
+- FEATURES
+- TASKS
+
+FEATURES
+turn system
+- press button to go to next turn
+- regulates other game processes (eg. fuel consumption)
+
+random events
+- chance to fire every turn
+- minor events:
+	- small effect to hope or discontent
+	- give/take small amount of resources
+- major events:
+	- give resources/turn
+	- significant effect to hope or discontent
+	- give new pops
+
+resources
+- distributed around the city and in outposts
+- initially city resources are enough, but later outposts are needed
+- outpost deposits provide much more than city mines
+	- incentivizes replacing city mines with other districts over time
+- three types: coal, wood, iron
+	- coal: needed to operate reactor
+	- wood: needed to make new districts
+	- iron: needed for specialty districts and outposts
+
+population and opinion
+- pop count
+- hope and discontent
+	- affected by different things
+		- high heat keeps hope up - low heat reduces hope
+		- high resources keeps discontent low - low resources increases discontent
+		- insufficient housing space increases discontent
+	- negative effects if hope < 25 or disc > 75
+	- game ends if hope reaches 0 or disc reaches 100
+
+paths
+- in the early game (turn 5?) you MUST choose one
+- faith: raises hope
+	- building specialty districts (churches) increases hope
+	- you get faith-specific responses to some events
+- order: lowers discontent
+	- building specialty districts (prisons) reduces discontent
+	- you get order-specific responses to some events
+
+weather
+- number representing temperature
+- lower temps lead to higher required reactor power or faster hope loss
+- no effect on outposts
+
+reactor
+- requires coal
+- provides heat to city
+- can change heat levels
+	- higher levels give more heat, but require more coal
+- game ends if it ever goes out
+
+city districts
+- three types: mining, housing, specialty
+	- mining: provides resources/turn, very cheap (requires wood)
+	- housing: provides space for 100 pops, cheap (requires wood)
+	- specialty: changes based on path (faith vs order), raising hope or lowering discontent (requires iron)
+
+outposts
+- provides resources/turn (much more than a city mine)
+- require some resources (coal)/turn
+- require 20 workers and XXX iron to form
+
+ui
+- displays info for item
+- gives some button options for interaction (changes depending on item)
+
+game
+- survive 20 turns to win
+
+TASKS (some of these are already done)
+turn system
+- [X] button to increment turn
+- [X] turn counter
+- [X] other nodes can sense and respond to turns
+
+random events
+- [X] can have different effects (on resources and on population)
+- [ ] have special ui for interacting
+- [X] responses can be modified (eg. from choosing faith or order path)
+
+resources
+- [ ] global resource counters for coal, wood, and iron independent of current scene
+	- [ ] can be added to or removed from
+	- [ ] represented on ui
+- [ ] resource deposits placed in city (for mines) and in wasteland (for outposts)
+
+population and opinion
+- [ ] global population counter independent of current scene
+	- [ ] represented on ui
+- [ ] population capacity based on available housing space
+	- [ ] population growth per turn
+- [ ] global hope and discontent counters (as percentages) independent of current scene
+	- [ ] can be added to or removed from
+	- [ ] represented on ui
+
+paths
+- [ ] custom event for faith vs order path choice
+- [ ] record of chosen path
+	- [ ] chosen path unlocks special responses to some events
+	- [ ] chosen path unlocks path-specific specialty district
+- [ ] choosing a path enables you to build specialty districts
+
+weather
+- [ ] global temp counter independent of current scene
+	- [ ] represented on ui
+- [ ] temp can be raised or lowered
+- [ ] temp starts at heat level 0 (or -1) and goes down on certain turns
+	- [ ] temp removes from the heat level of districts, requiring the player to increase reactor power
+	- [ ] can go down as low as -5 during the final few turns
+
+reactor
+- [ ] consumes coal per turn
+	- [ ] higher power level = more coal consumed
+- [X] has power level (1-5)
+- [ ] power level provides heat to surrounding districts
+
+city districts
+- [X] have slots
+- [ ] have heat level
+	- [ ] hope changes based on avg. heat level/city pop (unaffected by outposts)
+- [ ] can be built on empty slots
+- [ ] can be changed on occupied slots
+- mines
+	- [ ] provide resources per turn
+	- [ ] require workers
+	- [ ] requires wood to build
+- housing
+	- [ ] provides housing space
+	- [ ] requires wood to build
+- specialty
+	- [ ] unlocked once paths available
+	- changes based on path
+		- [ ] faith: adds hope / turn / district
+		- [ ] order: reduces disc / turn / district
+	- [ ] requires workers
+	- [ ] requires iron to build
+
+outposts
+- [ ] can be built on empty deposits
+	- [ ] toggleable map view to see deposits and outposts
+- [ ] provide resources per turn (based on deposit type)
+- [ ] requires workers
+- [ ] requires iron to build
+
+ui
+- [X] can be navigated easily
+- [X] can be closed and opened
+- [ ] fixed to right side
+
+game
+- [ ] detects when turn 21 is reached and gives win screen
+- [ ] otherwise gives lose screen

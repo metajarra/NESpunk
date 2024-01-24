@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciouj2rnk4tqm"]
+
+[ext_resource type="Script" path="res://Scripts/Signal Bus/signal_bus.gd" id="1_o1bpt"]
+[ext_resource type="Script" path="res://Scripts/Events/callable_event_manager.gd" id="2_1utjo"]
+
+[node name="Callable Events" type="Node"]
+
+[node name="Signal Bus" type="Node" parent="."]
+script = ExtResource("1_o1bpt")
+
+[node name="Manager" type="Node" parent="."]
+script = ExtResource("2_1utjo")
